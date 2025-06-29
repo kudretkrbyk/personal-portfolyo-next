@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kudretkrbyk.com.tr/sitemap.xml
