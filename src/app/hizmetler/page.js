@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 
 export default function Features() {
   const features = [
@@ -39,7 +39,7 @@ export default function Features() {
 
   return (
     <section id="features" className="bg-dark py-20">
-      <Helmet>
+      <Head>
         <title>Öne Çıkan Yeteneklerim | Kudret Kırbıyık</title>
         <meta
           name="description"
@@ -55,7 +55,7 @@ export default function Features() {
         />
         <meta property="og:image" content="/seo-thumbnail.jpg" />{" "}
         {/* varsayılan görsel */}
-      </Helmet>
+      </Head>
 
       <div className="container">
         <div className="text-center mb-12">

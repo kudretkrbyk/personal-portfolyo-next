@@ -1,6 +1,8 @@
+"use client";
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { useAddContactMutation } from "../services/contactApi";
+
+import { useAddContactMutation } from "../../services/contactApi";
+import Head from "next/head";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -53,7 +55,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section bg-dark">
-      <Helmet>
+      <Head>
         <title>Kocaeli Web Tasarım | Kudret Kırbıyık |İletişim </title>
         <meta
           name="description"
@@ -87,7 +89,7 @@ export default function Contact() {
       }
     `}
         </script>
-      </Helmet>
+      </Head>
 
       <div className="container">
         <div className="text-center mb-12">

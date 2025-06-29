@@ -1,20 +1,28 @@
-import { Navigate } from "react-router-dom";
+"use client";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../services/auth/authSlice"; // logout action'ı unutma
+import { useRouter } from "next/navigation";
+import { logout } from "../../services/auth/authSlice";
 
 export default function ProtectedRoute({ children, redirectTo = "/login" }) {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { user, expireTime } = useSelector((state) => state.auth);
+
   const isLoggedIn = Boolean(user);
   const isTokenExpired = expireTime && Date.now() > expireTime;
 
-  // Süresi dolmuşsa logout işlemi başlat
-  if (isTokenExpired) {
-    dispatch(logout());
-  }
+  useEffect(() => {
+    if (isTokenExpired) {
+      dispatch(logout());
+    }
+    if (!isLoggedIn || isTokenExpired) {
+      router.push(redirectTo);
+    }
+  }, [isLoggedIn, isTokenExpired, dispatch, router, redirectTo]);
 
   if (!isLoggedIn || isTokenExpired) {
-    return <Navigate to={redirectTo} replace />;
+    return null;
   }
 
   return children;

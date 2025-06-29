@@ -1,5 +1,5 @@
 import SkillBar from "./SkillBar";
-import data from "./Data/datas";
+import data from "../components/Data/datas";
 export default function Resume() {
   const { experiences, education, skills } = data;
   return (

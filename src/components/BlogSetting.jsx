@@ -6,7 +6,7 @@ import {
   useDeleteBlogMutation,
 } from "../services/blogApi";
 
-const API_URL = import.meta.env.VITE_IMG_URL;
+const API_URL = process.env.VITE_IMG_URL;
 
 export default function BlogSetting() {
   const { data: blogs = [], isLoading } = useGetAllForAdminQuery();

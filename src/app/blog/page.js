@@ -1,8 +1,10 @@
+"use client";
 import { useState } from "react";
-import { useGetAllBlogsQuery } from "../services/blogApi";
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-const API_URL = import.meta.env.VITE_IMG_URL;
+import { useGetAllBlogsQuery } from "../../services/blogApi";
+import Link from "next/link";
+import Head from "next/head";
+
+const API_URL = process.env.NEXT_PUBLIC_IMG_URL;
 
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString("tr-TR", {
@@ -12,19 +14,20 @@ const formatDate = (dateStr) =>
   });
 
 export default function Blog() {
-  const { data: blogs = [], isLoading, isError } = useGetAllBlogsQuery();
+  const { data: blogs = [], isLoading } = useGetAllBlogsQuery();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(blogs.length / postsPerPage);
-  console.log("bloglar", blogs);
+
   const stripHTML = (html) => {
     const div = document.createElement("div");
     div.innerHTML = html;
     return div.textContent || div.innerText || "";
   };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-dark text-white flex justify-center items-center">
@@ -35,7 +38,7 @@ export default function Blog() {
 
   return (
     <section id="blog" className="section bg-dark">
-      <Helmet>
+      <Head>
         <title>Blog Yazıları | Kudret Kırbıyık</title>
         <meta
           name="description"
@@ -48,7 +51,7 @@ export default function Blog() {
         />
         <meta property="og:image" content="/seo-blog-thumbnail.jpg" />
         <link rel="canonical" href="https://kudretkrbyk.com.tr/blog" />
-      </Helmet>
+      </Head>
 
       <div className="container">
         <div className="flex flex-col items-center pb-12">
@@ -65,7 +68,7 @@ export default function Blog() {
           {currentPosts.map((post, index) => (
             <article
               key={index}
-              className="card flex flex-col items-start  group"
+              className="card flex flex-col items-start group"
             >
               <div className="relative overflow-hidden rounded-xl">
                 <img
@@ -88,7 +91,7 @@ export default function Blog() {
                 </p>
 
                 <Link
-                  to={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   className="inline-flex items-center text-primary hover:text-white transition-colors"
                 >
                   Devamını Oku
@@ -111,6 +114,7 @@ export default function Blog() {
           ))}
         </div>
       </div>
+
       <div className="flex justify-center mt-8 gap-2">
         {Array.from({ length: totalPages }, (_, i) => (
           <button

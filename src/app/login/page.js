@@ -1,8 +1,8 @@
+"use client";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { login, reset } from "../services/auth/authSlice";
+import { login, reset } from "../../services/auth/authSlice";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -10,21 +10,20 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [localError, setLocalError] = useState("");
 
-  const navigate = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
-  console.log("login ", user);
 
   useEffect(() => {
     if (isSuccess || user) {
-      navigate("/Admin");
+      router.push("/admin");
     }
 
     dispatch(reset());
-  }, [isSuccess, user, navigate, dispatch]);
+  }, [isSuccess, user, router, dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +84,7 @@ export default function Login() {
               <div className="relative">
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={userPassword}
                   onChange={(e) => setUserPassword(e.target.value)}
                   required
@@ -97,7 +96,9 @@ export default function Login() {
                   type="button"
                   onClick={toggleShowPassword}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white focus:outline-none"
-                ></button>
+                >
+                  {showPassword ? "Gizle" : "Göster"}
+                </button>
               </div>
             </div>
 

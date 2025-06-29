@@ -1,6 +1,7 @@
+"use client";
 import { useState } from "react";
-import BlogSetting from "../components/blogSetting";
-import PortfolyoSetting from "../components/portfolyoSetting";
+import BlogSetting from "./BlogSetting";
+import PortfolyoSetting from "./PortfolyoSetting";
 export default function Admin() {
   const [activeTab, setActiveTab] = useState("portfolio");
 

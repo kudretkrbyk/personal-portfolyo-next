@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL + "/projects",
+    baseUrl: process.env.NEXT_PUBLIC_API_URL + "/projects",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.user?.token;
       if (token) headers.set("Authorization", `Bearer ${token}`);

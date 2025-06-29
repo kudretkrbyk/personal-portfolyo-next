@@ -1,9 +1,11 @@
+"use client";
 import { useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import LazyImage from "../components/LazyImage";
-import { useGetProjectsQuery } from "../services/projectApi";
 
-const API_URL = import.meta.env.VITE_IMG_URL;
+import LazyImage from "../../components/LazyImage";
+import { useGetProjectsQuery } from "../../services/projectApi";
+import Head from "next/head";
+
+const API_URL = process.env.VITE_IMG_URL;
 
 export default function Portfolio() {
   const { data: projects = [], isLoading, isError } = useGetProjectsQuery();
@@ -18,7 +20,7 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="bg-dark py-20">
-      <Helmet>
+      <Head>
         <title>Portfolyo | Kudret Kırbıyık</title>
         <meta
           name="description"
@@ -30,7 +32,7 @@ export default function Portfolio() {
           content="Kocaeli web tasarım için geliştirdiğim web projelerine göz atın. Canlı demolar ve GitHub bağlantılarıyla detaylı portfolyo."
         />
         <meta property="og:image" content="/seo-portfolio-thumbnail.jpg" />
-      </Helmet>
+      </Head>
 
       <div className="container">
         <div className="text-center mb-12">

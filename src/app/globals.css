@@ -1,3 +1,62 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat.woff2') format('woff2');
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply  bg-dark text-body-color antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-[1260px] mx-auto px-4;
+  }
+  
+  .section {
+    @apply py-[60px] md:py-[100px];
+  }
+
+  .card {
+    @apply bg-card-dark shadow-card rounded-xl border border-border-color p-6;
+  }
+
+  .heading-gradient {
+    @apply bg-gradient-to-r from-primary to-[#ff014f] bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-card-dark text-white px-8 py-4 rounded-lg shadow-card border border-border-color 
+    hover:bg-gradient-to-r hover:from-primary hover:to-[#ff014f] transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply text-body-color hover:text-primary transition-colors duration-300;
+  }
+}
+/* Özel Border-Radius Animasyonu */
+@layer utilities {
+  @keyframes morph-border {
+    0% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+  }
+
+  .animate-border-morph {
+    animation: morph-border 15s ease-in-out infinite;
+  }
+}

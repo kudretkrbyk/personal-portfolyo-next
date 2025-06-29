@@ -1,13 +1,12 @@
-import { Helmet } from "react-helmet-async";
-
-import AnimatedSection from "../components/AnimatedSection";
-import Hero from "../components/Hero";
-import Resume from "../components/Resume";
+import AnimatedSection from "../../components/AnimatedSection";
+import Hero from "../../components/Hero";
+import Resume from "../../components/Resume";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
-      <Helmet>
+      <Head>
         <title>
           {" "}
           Kocaeli Web Tasarım | Web Geliştirici & Frontend Uzmanı | Kudret
@@ -23,7 +22,7 @@ export default function Home() {
           content="Modern web uygulamaları, frontend projeleri ve UI tasarımlarıyla Kudret Kırbıyık'ın portfolyosunu keşfedin."
         />
         <meta property="og:image" content="/seo-home-thumbnail.jpg" />
-      </Helmet>
+      </Head>
 
       <Hero />
 

@@ -6,7 +6,7 @@ import {
   useDeleteProjectMutation,
 } from "../services/projectApi";
 
-const API_URL = import.meta.env.VITE_IMG_URL;
+const API_URL = process.env.VITE_IMG_URL;
 
 export default function PortfolyoSetting() {
   const { data: projects = [], isLoading, isError } = useGetProjectsQuery();

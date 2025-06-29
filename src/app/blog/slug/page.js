@@ -1,12 +1,14 @@
+"use client";
 import { useParams } from "react-router-dom";
 import {
   useGetBlogBySlugQuery,
   useGetAllBlogsQuery,
 } from "../services/blogApi";
-import { Helmet } from "react-helmet-async";
-import { useEffect, useRef, useState } from "react";
 
-const API_URL = import.meta.env.VITE_IMG_URL;
+import { useEffect, useRef, useState } from "react";
+import Head from "next/head";
+
+const API_URL = process.env.VITE_IMG_URL;
 
 export default function BlogDetail() {
   const stripHTML = (html) => {
@@ -53,7 +55,7 @@ export default function BlogDetail() {
 
   return (
     <section className="bg-dark py-20 text-white">
-      <Helmet>
+      <Head>
         <title>{`${blog.title} | Kudret Kırbıyık`}</title>
         <meta
           name="description"
@@ -106,7 +108,7 @@ export default function BlogDetail() {
             },
           })}
         </script>
-      </Helmet>
+      </Head>
 
       <div className="container max-w-4xl mx-auto px-6">
         {/* Breadcrumb */}
