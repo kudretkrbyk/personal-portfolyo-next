@@ -30,17 +30,22 @@ export default function Hero() {
               />
             </div>
           )}
-          <div className="flex flex-col items-center md:items-start justify-center space-y-6 xl:text-nowrap">
-            <h1 className="text-4xl md:text-6xl font-bold">Merhaba, Ben </h1>
+          <div className="flex flex-col items-center md:items-start justify-center space-y-6 ">
+            <h1 className="text-4xl md:text-6xl font-bold">
+              Kocaeli Web Tasarım Uzmanı
+            </h1>
             <p className="heading-gradient text-6xl py-2">Kudret Kırbıyık</p>
             <p className="text-xl md:text-2xl text-body-color">
-              Frontend Developer
+              Frontend Developer & Web Tasarımcı
             </p>
             <div className="flex flex-wrap xl:flex-nowrap gap-4">
-              <Link href="/portfolyo" className="btn-primary w-full">
+              <Link
+                href="/portfolyo"
+                className="btn-primary w-full text-nowrap"
+              >
                 Portfolyo
               </Link>
-              <Link href="/iletisim" className="btn-primary w-full">
+              <Link href="/iletisim" className="btn-primary w-full text-nowrap">
                 İletişime Geç
               </Link>
             </div>

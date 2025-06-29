@@ -84,7 +84,7 @@ export default function Login() {
               <div className="relative">
                 <input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   value={userPassword}
                   onChange={(e) => setUserPassword(e.target.value)}
                   required
@@ -96,9 +96,7 @@ export default function Login() {
                   type="button"
                   onClick={toggleShowPassword}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white focus:outline-none"
-                >
-                  {showPassword ? "Gizle" : "Göster"}
-                </button>
+                ></button>
               </div>
             </div>
 

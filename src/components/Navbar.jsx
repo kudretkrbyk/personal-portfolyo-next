@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../services/auth/authSlice";
+import { logout, loadUserFromStorage } from "../services/auth/authSlice";
 import { CiLogout } from "react-icons/ci";
 
 export default function Navbar() {
@@ -12,6 +12,16 @@ export default function Navbar() {
   const isLoggedIn = Boolean(user);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
+  // LocalStorage'dan user bilgisini component mount olduğunda al
+  useEffect(() => {
+    dispatch(loadUserFromStorage());
+  }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+  };
 
   const menuItems = [
     { title: "Anasayfa", href: "/anasayfa" },
@@ -51,10 +61,10 @@ export default function Navbar() {
             {isLoggedIn && (
               <button
                 aria-label="Çıkış Yap"
-                onClick={() => dispatch(logout())}
+                onClick={handleLogout}
                 className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors border border-gray-300 dark:border-gray-600"
               >
-                <CiLogout />
+                <CiLogout className="text-red-500" />
               </button>
             )}
           </div>
@@ -102,6 +112,14 @@ export default function Navbar() {
                 {item.title}
               </Link>
             ))}
+            {isLoggedIn && (
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left py-2 px-4 bg-primary text-white rounded mt-4"
+              >
+                Çıkış Yap
+              </button>
+            )}
           </div>
         </div>
       </div>

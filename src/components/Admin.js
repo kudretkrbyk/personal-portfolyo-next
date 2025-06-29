@@ -3,7 +3,7 @@ import { useState } from "react";
 import BlogSetting from "./BlogSetting";
 import PortfolyoSetting from "./PortfolyoSetting";
 export default function Admin() {
-  const [activeTab, setActiveTab] = useState("portfolio");
+  const [activeTab, setActiveTab] = useState("blog");
 
   const renderContent = () => {
     switch (activeTab) {
